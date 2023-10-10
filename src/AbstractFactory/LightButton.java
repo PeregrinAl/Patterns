@@ -1,5 +1,6 @@
-public class LightButton implements IButton {
+package AbstractFactory;
 
+public class LightButton implements IButton {
 
     @Override
     public String getSecondColor() {

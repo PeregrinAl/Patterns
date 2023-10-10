@@ -1,13 +1,10 @@
 package Builder;
 
 import Builder.Components.Availability;
-import Builder.Components.Cost;
 
 public class HomeBuilder implements IHomeBuilder {
-    String address;
     int bedsCount;
     Availability petsAvailability;
-    Cost cost;
     Availability TV;
     Availability conditioner;
     Availability soundInsulation;
@@ -17,59 +14,70 @@ public class HomeBuilder implements IHomeBuilder {
     Availability dishwasher;
 
     @Override
-    public void setAddress() {
-
+    public IHomeBuilder setBedsCount(int count) {
+        this.bedsCount = count;
+        return this;
     }
 
     @Override
-    public void setBedsCount() {
-
+    public IHomeBuilder setPetsAvailability(Availability availability) {
+        this.petsAvailability = availability;
+        return this;
     }
 
     @Override
-    public void setPetsAvailability() {
-
+    public IHomeBuilder setTV(Availability availability) {
+        this.TV = availability;
+        return this;
     }
 
     @Override
-    public void setCost() {
-
+    public IHomeBuilder setConditioner(Availability availability) {
+        this.conditioner = availability;
+        return this;
     }
 
     @Override
-    public void setTV() {
-
+    public IHomeBuilder setSoundInsulation(Availability availability) {
+        this.soundInsulation = availability;
+        return this;
     }
 
     @Override
-    public void setConditioner() {
-
+    public IHomeBuilder setWashingMachine(Availability availability) {
+        this.washingMachine = availability;
+        return this;
     }
 
     @Override
-    public void setSoundInsulation() {
-
+    public IHomeBuilder setFridge(Availability availability) {
+        this.fridge = availability;
+        return this;
     }
 
     @Override
-    public void setWashingMachine() {
-
+    public IHomeBuilder setMicrowave(Availability availability) {
+        this.microwave = availability;
+        return this;
     }
 
     @Override
-    public void setFridge() {
-
+    public IHomeBuilder setDishwasher(Availability availability) {
+        this.dishwasher = availability;
+        return this;
     }
 
     @Override
-    public void setMicrowave() {
-
+    public Home build() {
+        return new Home(bedsCount,
+                petsAvailability,
+                TV,
+                conditioner,
+                soundInsulation,
+                washingMachine,
+                fridge,
+                microwave,
+                dishwasher);
     }
-
-    @Override
-    public void setDishwasher() {
-
-    }
-
 
 }

@@ -1,3 +1,5 @@
+package AbstractFactory;
+
 public class LightFactory implements IFactory {
     @Override
     public IButton createButton() {

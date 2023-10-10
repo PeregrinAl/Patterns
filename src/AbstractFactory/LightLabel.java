@@ -1,3 +1,5 @@
+package AbstractFactory;
+
 public class LightLabel implements ILabel {
     @Override
     public int getRGB() {

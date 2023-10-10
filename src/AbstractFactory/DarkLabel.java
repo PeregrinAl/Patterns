@@ -1,3 +1,5 @@
+package AbstractFactory;
+
 public class DarkLabel implements ILabel {
     @Override
     public int getRGB() {
