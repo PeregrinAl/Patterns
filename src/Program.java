@@ -1,12 +1,16 @@
-import AbstractFactory.DarkFactory;
-import AbstractFactory.IButton;
-import AbstractFactory.IFactory;
-import AbstractFactory.ILabel;
+import AbstractFactory.*;
 import Adapter.*;
+import Decorator.*;
+import DishBuilder.*;
 import DishBuilder.Director;
 import DishBuilder.DishBuilder;
 import DishBuilder.NotificationBuilder;
 import DishBuilder.Notification;
+import MyAdapter.FlyCatcher;
+import MyAdapter.IPlant;
+import MyAdapter.PlantAdapter;
+import MyAdapter.SunFlower;
+import MyAdapter.PFC;
 
 public class Program {
     public static void client(IPlotter plotter,
@@ -15,24 +19,66 @@ public class Program {
         plotter.plot(fun, boundary);
     }
 
+    public static void GetUI(IFactory factory) {
+        IButton button = factory.createButton();
+        ILabel label = factory.createLabel();
+        System.out.println(button.getSecondColor());
+        System.out.println(label.getRGB());
+
+    }
+
+    public static void GetProduct(IDishBuilder builder) {
+        Director director = new Director(builder);
+        director.Cook("Салат");
+    }
+
+    public static void ImageProcessDecorator(ImageDecorator imageEditor, String path) {
+        imageEditor.saveImage();
+        imageEditor.LoadImage(path);
+        imageEditor.RotateImage(25);
+    }
+
+    public static void makePlantEat(IPlant plant, PFC pfc) {
+        System.out.println(plant.eat(pfc));
+    }
+
+
+
     public static void main (String[] args) {
-//         IFactory widgetFactory = new DarkFactory();
-//         IButton mainButton = widgetFactory.createButton();
-//         ILabel mainLabel = widgetFactory.createLabel();
-//        var plotter = new AdapterMathGL4J();
-//        var sin = new Sin();
-//        var sqr = new Sqr();
-//        var boundary = new IPlotter.Boundary(-3.0, 3.0);
-//        client(plotter, sqr, boundary);
+/*        IFactory widgetFactory = new DarkFactory();
 
-        Director director = new Director();
-        DishBuilder builder = new DishBuilder();
-        director.Salad(builder);
-        builder.ready();
+        GetUI(widgetFactory);
+        IFactory widgetLightFactory = new LightFactory();
+        GetUI(widgetLightFactory);
 
+        var plotter = new AdapterMathGL4J();
+        var sin = new Sin();
+        var sqr = new Sqr();
+        var boundary = new IPlotter.Boundary(-3.0, 3.0);
+        client(plotter, sqr, boundary);*/
+
+/*        DishBuilder builder = new DishBuilder();
         NotificationBuilder notificationBuilder = new NotificationBuilder();
-        director.Salad(notificationBuilder);
+
+        GetProduct(notificationBuilder);
         Notification myNotification = notificationBuilder.ready();
+
+        GetProduct(builder);*/
+
+
+//        var imageEditor = new ImageEditor();
+//        var newImageEditor = new ImageCache(imageEditor);
+//        var cropRectEditor = new ImageLeftRotate(newImageEditor);
+//
+//        ImageProcessDecorator(cropRectEditor, "C://Sasha");
+
+        PFC pfc = new PFC(10,13,19);
+
+        SunFlower sunFlower = new SunFlower();
+        FlyCatcher flyCatcher = new FlyCatcher();
+        makePlantEat(sunFlower, pfc);
+        makePlantEat(new PlantAdapter(flyCatcher), pfc);
+
 
     }
 } 

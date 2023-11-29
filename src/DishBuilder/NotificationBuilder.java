@@ -8,7 +8,7 @@ public class NotificationBuilder implements IDishBuilder {
     public IDishBuilder createOrder(String order) {
         count += 1;
         System.out.println("Зал: заказ " + order + " " + count);
-        notification = new Notification(count, order, DishList.map.get(order));
+        this.notification = new Notification(count, order, DishList.map.get(order));
         return this;
     }
 
@@ -21,12 +21,12 @@ public class NotificationBuilder implements IDishBuilder {
     @Override
     public void cookingTimer() {
         long start = System.currentTimeMillis();
-        long end = (long) (start + (60 * 1000) * notification.time);
+        long end = (long) (start + (60 * 1000) * this.notification.time);
         while (System.currentTimeMillis() < end) {
             System.out.println("Заказ готовится уже " + ((System.currentTimeMillis() - start) / 1000) + " секунд" +
                     "\nОсталось " + ((end - System.currentTimeMillis()) / 1000));
             try {
-                Thread.sleep(10000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -34,7 +34,7 @@ public class NotificationBuilder implements IDishBuilder {
     }
 
     public Notification ready() {
-        notification.callNotification();
+        this.notification.callNotification();
         return notification;
     }
 }

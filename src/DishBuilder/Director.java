@@ -1,14 +1,12 @@
 package DishBuilder;
 
 public class Director {
-    public void Salad(IDishBuilder dishBuilder) {
-        dishBuilder.createOrder("Салат").startCooking().cookingTimer();
+    public IDishBuilder dishBuilder;
+    public Director(IDishBuilder dishBuilder) {
+        this.dishBuilder = dishBuilder;
+    }
+    public void Cook(String recipe) {
+        dishBuilder.createOrder(recipe).startCooking().cookingTimer();
 
-    }
-    public void Pancakes(IDishBuilder dishBuilder) {
-        dishBuilder.createOrder("Блины").startCooking().cookingTimer();
-    }
-    public void Soup(IDishBuilder dishBuilder) {
-        dishBuilder.createOrder("Суп").startCooking().cookingTimer();
     }
 }
