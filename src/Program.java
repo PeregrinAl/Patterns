@@ -1,16 +1,17 @@
-import AbstractFactory.*;
-import Adapter.*;
-import Decorator.*;
-import DishBuilder.*;
-import DishBuilder.Director;
-import DishBuilder.DishBuilder;
-import DishBuilder.NotificationBuilder;
-import DishBuilder.Notification;
-import MyAdapter.FlyCatcher;
-import MyAdapter.IPlant;
-import MyAdapter.PlantAdapter;
-import MyAdapter.SunFlower;
-import MyAdapter.PFC;
+import Command.Button;
+import Command.ICommand;
+import Command.PairEditor;
+import Command.Plus;
+import GenerativePatterns.AbstractFactory.*;
+import StructuralPatterns.Adapter.*;
+import StructuralPatterns.Decorator.*;
+import GenerativePatterns.DishBuilder.*;
+import GenerativePatterns.DishBuilder.Director;
+import StructuralPatterns.MyAdapter.FlyCatcher;
+import StructuralPatterns.MyAdapter.IPlant;
+import StructuralPatterns.MyAdapter.PlantAdapter;
+import StructuralPatterns.MyAdapter.SunFlower;
+import StructuralPatterns.MyAdapter.PFC;
 
 public class Program {
     public static void client(IPlotter plotter,
@@ -42,42 +43,52 @@ public class Program {
         System.out.println(plant.eat(pfc));
     }
 
+    public static void calculatorClient() {
 
+    }
 
     public static void main (String[] args) {
-/*        IFactory widgetFactory = new DarkFactory();
+//        IFactory widgetFactory = new DarkFactory();
+//
+//        GetUI(widgetFactory);
+//        IFactory widgetLightFactory = new LightFactory();
+//        GetUI(widgetLightFactory);
+//
+//        var plotter = new AdapterMathGL4J();
+//        var sin = new Sin();
+//        var sqr = new Sqr();
+//        var boundary = new IPlotter.Boundary(-3.0, 3.0);
+//        client(plotter, sqr, boundary);
 
-        GetUI(widgetFactory);
-        IFactory widgetLightFactory = new LightFactory();
-        GetUI(widgetLightFactory);
-
-        var plotter = new AdapterMathGL4J();
-        var sin = new Sin();
-        var sqr = new Sqr();
-        var boundary = new IPlotter.Boundary(-3.0, 3.0);
-        client(plotter, sqr, boundary);*/
-
-/*        DishBuilder builder = new DishBuilder();
-        NotificationBuilder notificationBuilder = new NotificationBuilder();
-
-        GetProduct(notificationBuilder);
-        Notification myNotification = notificationBuilder.ready();
-
-        GetProduct(builder);*/
-
+//        GenerativePatterns.DishBuilder builder = new GenerativePatterns.DishBuilder();
+//        NotificationBuilder notificationBuilder = new NotificationBuilder();
+//
+//        GetProduct(notificationBuilder);
+//        Notification myNotification = notificationBuilder.ready();
+//
+//        GetProduct(builder);
 
 //        var imageEditor = new ImageEditor();
 //        var newImageEditor = new ImageCache(imageEditor);
 //        var cropRectEditor = new ImageLeftRotate(newImageEditor);
 //
 //        ImageProcessDecorator(cropRectEditor, "C://Sasha");
+//
+//        PFC pfc = new PFC(10,13,19);
+//
+//        SunFlower sunFlower = new SunFlower();
+//        FlyCatcher flyCatcher = new FlyCatcher();
+//        makePlantEat(sunFlower, pfc);
+//        makePlantEat(new PlantAdapter(flyCatcher), pfc);
+        PairEditor pairEditor = new PairEditor();
+        pairEditor.setNumberA(4);
+        pairEditor.setNumberB(5);
+        Button button = new Button();
+        button.setCommand(new Plus(pairEditor), pairEditor);
+        button.executeCommand();
 
-        PFC pfc = new PFC(10,13,19);
 
-        SunFlower sunFlower = new SunFlower();
-        FlyCatcher flyCatcher = new FlyCatcher();
-        makePlantEat(sunFlower, pfc);
-        makePlantEat(new PlantAdapter(flyCatcher), pfc);
+
 
 
     }
