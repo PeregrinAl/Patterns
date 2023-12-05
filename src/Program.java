@@ -1,7 +1,4 @@
-import Command.Button;
-import Command.ICommand;
-import Command.PairEditor;
-import Command.Plus;
+import Command.*;
 import GenerativePatterns.AbstractFactory.*;
 import StructuralPatterns.Adapter.*;
 import StructuralPatterns.Decorator.*;
@@ -43,8 +40,18 @@ public class Program {
         System.out.println(plant.eat(pfc));
     }
 
-    public static void calculatorClient() {
+    public static void calculatorClient(Button button, PairEditor pairEditor) {
+        button.setCommand(new Plus());
+        button.executeCommand(pairEditor);
+        System.out.println(pairEditor);
 
+        button.setCommand(new Minus());
+        button.executeCommand(pairEditor);
+        System.out.println(pairEditor);
+
+        button.setCommand(new Divide());
+        button.executeCommand(pairEditor);
+        System.out.println(pairEditor);
     }
 
     public static void main (String[] args) {
@@ -80,17 +87,12 @@ public class Program {
 //        FlyCatcher flyCatcher = new FlyCatcher();
 //        makePlantEat(sunFlower, pfc);
 //        makePlantEat(new PlantAdapter(flyCatcher), pfc);
+
         PairEditor pairEditor = new PairEditor();
-        pairEditor.setNumberA(4);
+        pairEditor.setNumberA(26);
         pairEditor.setNumberB(5);
         Button button = new Button();
-        button.setCommand(new Plus(pairEditor), pairEditor);
-        button.executeCommand();
-
-
-
-
-
+        calculatorClient(button, pairEditor);
     }
 } 
 
