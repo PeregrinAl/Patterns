@@ -1,16 +1,15 @@
-import AbstractFactory.*;
-import Adapter.*;
-import Decorator.*;
-import DishBuilder.*;
-import DishBuilder.Director;
-import DishBuilder.DishBuilder;
-import DishBuilder.NotificationBuilder;
-import DishBuilder.Notification;
-import MyAdapter.FlyCatcher;
-import MyAdapter.IPlant;
-import MyAdapter.PlantAdapter;
-import MyAdapter.SunFlower;
-import MyAdapter.PFC;
+import Architecture.Window;
+import Command.*;
+import GenerativePatterns.AbstractFactory.*;
+import StructuralPatterns.Adapter.*;
+import StructuralPatterns.Decorator.*;
+import GenerativePatterns.DishBuilder.*;
+import GenerativePatterns.DishBuilder.Director;
+import StructuralPatterns.MyAdapter.FlyCatcher;
+import StructuralPatterns.MyAdapter.IPlant;
+import StructuralPatterns.MyAdapter.PlantAdapter;
+import StructuralPatterns.MyAdapter.SunFlower;
+import StructuralPatterns.MyAdapter.PFC;
 
 public class Program {
     public static void client(IPlotter plotter,
@@ -42,44 +41,72 @@ public class Program {
         System.out.println(plant.eat(pfc));
     }
 
+    public static void calculatorClient(Button button, PairEditor pairEditor) {
+        button.setCommand(new Plus());
+        button.executeCommand(pairEditor);
+        System.out.println(pairEditor);
 
+        button.setCommand(new Minus());
+        button.executeCommand(pairEditor);
+        System.out.println(pairEditor);
+
+        button.setCommand(new Divide());
+        button.executeCommand(pairEditor);
+        System.out.println(pairEditor);
+    }
+    public static void calculate(String left, String right, Architecture.ICommand command) {
+        Window window = new Window();
+        window.getEditorLeft().setText(left);
+        window.getEditorRight().setText(right);
+
+        window.getButton().setCommand(command);
+        window.getButton().notifyClick();
+
+        System.out.println(window.getEditorResult().getText());
+    }
 
     public static void main (String[] args) {
-/*        IFactory widgetFactory = new DarkFactory();
+//        IFactory widgetFactory = new DarkFactory();
+//
+//        GetUI(widgetFactory);
+//        IFactory widgetLightFactory = new LightFactory();
+//        GetUI(widgetLightFactory);
+//
+//        var plotter = new AdapterMathGL4J();
+//        var sin = new Sin();
+//        var sqr = new Sqr();
+//        var boundary = new IPlotter.Boundary(-3.0, 3.0);
+//        client(plotter, sqr, boundary);
 
-        GetUI(widgetFactory);
-        IFactory widgetLightFactory = new LightFactory();
-        GetUI(widgetLightFactory);
-
-        var plotter = new AdapterMathGL4J();
-        var sin = new Sin();
-        var sqr = new Sqr();
-        var boundary = new IPlotter.Boundary(-3.0, 3.0);
-        client(plotter, sqr, boundary);*/
-
-/*        DishBuilder builder = new DishBuilder();
-        NotificationBuilder notificationBuilder = new NotificationBuilder();
-
-        GetProduct(notificationBuilder);
-        Notification myNotification = notificationBuilder.ready();
-
-        GetProduct(builder);*/
-
+//        GenerativePatterns.DishBuilder builder = new GenerativePatterns.DishBuilder();
+//        NotificationBuilder notificationBuilder = new NotificationBuilder();
+//
+//        GetProduct(notificationBuilder);
+//        Notification myNotification = notificationBuilder.ready();
+//
+//        GetProduct(builder);
 
 //        var imageEditor = new ImageEditor();
 //        var newImageEditor = new ImageCache(imageEditor);
 //        var cropRectEditor = new ImageLeftRotate(newImageEditor);
 //
 //        ImageProcessDecorator(cropRectEditor, "C://Sasha");
+//
+//        PFC pfc = new PFC(10,13,19);
+//
+//        SunFlower sunFlower = new SunFlower();
+//        FlyCatcher flyCatcher = new FlyCatcher();
+//        makePlantEat(sunFlower, pfc);
+//        makePlantEat(new PlantAdapter(flyCatcher), pfc);
 
-        PFC pfc = new PFC(10,13,19);
-
-        SunFlower sunFlower = new SunFlower();
-        FlyCatcher flyCatcher = new FlyCatcher();
-        makePlantEat(sunFlower, pfc);
-        makePlantEat(new PlantAdapter(flyCatcher), pfc);
-
-
+//        PairEditor pairEditor = new PairEditor();
+//        pairEditor.setNumberA(26);
+//        pairEditor.setNumberB(5);
+//        Button button = new Button();
+//        calculatorClient(button, pairEditor);
+        calculate("5", "2", new Architecture.Multiply());
+        calculate("5", "2", new Architecture.Plus());
+        calculate("5", "2", new Architecture.Minus());
     }
 } 
 
