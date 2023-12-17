@@ -1,8 +1,8 @@
 package Architecture;
 
-public class Plus implements ICommand {
+public class Multiply implements ICommand {
     @Override
     public int exec(int... params) {
-        return params[0] + params[1];
+        return params[0] * params[1];
     }
 }

@@ -8,9 +8,8 @@ public class Button implements IWidget {
     }
     @Override
     public void notifyClick() {
-        window.sendSignal("Pushed", this);
+        window.sendSignal(Signal.PUSHED.getValue(), this);
     }
-
     @Override
     public void setCommand(ICommand command) {
         this.command = command;

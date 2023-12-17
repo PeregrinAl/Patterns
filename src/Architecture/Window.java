@@ -3,20 +3,53 @@ package Architecture;
 import java.util.Objects;
 
 public class Window implements IWindow {
-    private final Editor editorLeft = new Editor(this);
-    private final Editor editorRight = new Editor(this);
-    private final Editor editorResult = new Editor(this);
-    private final Button button = new Button(this);
+
+    public Editor getEditorLeft() {
+        return editorLeft;
+    }
+
+    public void setEditorLeft(Editor editorLeft) {
+        this.editorLeft = editorLeft;
+    }
+
+    public Editor getEditorRight() {
+        return editorRight;
+    }
+
+    public void setEditorRight(Editor editorRight) {
+        this.editorRight = editorRight;
+    }
+
+    public Editor getEditorResult() {
+        return editorResult;
+    }
+
+    public void setEditorResult(Editor editorResult) {
+        this.editorResult = editorResult;
+    }
+
+    public Button getButton() {
+        return button;
+    }
+
+    public void setButton(Button button) {
+        this.button = button;
+    }
+
+    private Editor editorLeft = new Editor();
+    private Editor editorRight = new Editor();
+    private Editor editorResult = new Editor();
+    private Button button = new Button(this);
 
     @Override
-    public void sendSignal(String string, IWidget widget) {
-        if (Objects.equals(string, "Pushed")) {
+    public void sendSignal(String signal, IWidget widget) {
+        if (Signal.PUSHED.getValue().equals(signal)) {
             widget.push(Integer.parseInt(editorLeft.getText()),
                     Integer.parseInt(editorRight.getText()));
         }
 
-        if (widget.equals(button) && !Objects.equals(string, "Pushed")) {
-            editorResult.text = string;
+        if (Objects.equals(widget, button) && !Signal.PUSHED.getValue().equals(signal)) {
+            editorResult.setText(signal);
         }
     }
 }

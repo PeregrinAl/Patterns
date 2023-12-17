@@ -54,9 +54,15 @@ public class Program {
         button.executeCommand(pairEditor);
         System.out.println(pairEditor);
     }
-    public static void getUi() {
+    public static void calculate(String left, String right, Architecture.ICommand command) {
         Window window = new Window();
+        window.getEditorLeft().setText(left);
+        window.getEditorRight().setText(right);
 
+        window.getButton().setCommand(command);
+        window.getButton().notifyClick();
+
+        System.out.println(window.getEditorResult().getText());
     }
 
     public static void main (String[] args) {
@@ -98,8 +104,9 @@ public class Program {
 //        pairEditor.setNumberB(5);
 //        Button button = new Button();
 //        calculatorClient(button, pairEditor);
-
-
+        calculate("5", "2", new Architecture.Multiply());
+        calculate("5", "2", new Architecture.Plus());
+        calculate("5", "2", new Architecture.Minus());
     }
 } 
 
