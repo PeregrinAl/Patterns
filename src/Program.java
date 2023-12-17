@@ -1,3 +1,4 @@
+import Architecture.Window;
 import Command.*;
 import GenerativePatterns.AbstractFactory.*;
 import StructuralPatterns.Adapter.*;
@@ -53,6 +54,10 @@ public class Program {
         button.executeCommand(pairEditor);
         System.out.println(pairEditor);
     }
+    public static void getUi() {
+        Window window = new Window();
+
+    }
 
     public static void main (String[] args) {
 //        IFactory widgetFactory = new DarkFactory();
@@ -88,11 +93,13 @@ public class Program {
 //        makePlantEat(sunFlower, pfc);
 //        makePlantEat(new PlantAdapter(flyCatcher), pfc);
 
-        PairEditor pairEditor = new PairEditor();
-        pairEditor.setNumberA(26);
-        pairEditor.setNumberB(5);
-        Button button = new Button();
-        calculatorClient(button, pairEditor);
+//        PairEditor pairEditor = new PairEditor();
+//        pairEditor.setNumberA(26);
+//        pairEditor.setNumberB(5);
+//        Button button = new Button();
+//        calculatorClient(button, pairEditor);
+
+
     }
 } 
 
