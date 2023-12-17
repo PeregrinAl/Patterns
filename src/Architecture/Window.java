@@ -17,6 +17,6 @@ public class Window implements IWindow {
 
         if (widget.equals(button) && !Objects.equals(string, "Pushed")) {
             editorResult.text = string;
-        } 
+        }
     }
 }
